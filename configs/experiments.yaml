@@ -1,0 +1,92 @@
+# =============================================================================
+# experiments.yaml — Merkezi Konfigürasyon Dosyası
+# Grup 15: SWAT + WADI
+# TÜM parametreler buradan okunur. Python dosyalarında hard-coded değer YOKTUR.
+# =============================================================================
+
+# ---------------------------------------------------------------------------
+# Veri Setleri
+# ---------------------------------------------------------------------------
+datasets:
+  - name: swat
+    path: data/raw/swat/
+    label_column: "Normal/Attack"   # 0=Normal, 1=Attack
+  - name: wadi
+    path: data/raw/wadi/
+    label_column: "Attack"
+
+# ---------------------------------------------------------------------------
+# Veri Bölme Oranları — ZORUNLU (farklı oran kabul edilmez!)
+# ---------------------------------------------------------------------------
+data_split:
+  train: 0.60
+  val:   0.20
+  test:  0.20
+
+# ---------------------------------------------------------------------------
+# Veri Ön İşleme
+# ---------------------------------------------------------------------------
+preprocessing:
+  scaler: minmax           # minmax | standard
+  handle_missing: ffill    # ffill | bfill | drop
+  pca_components: 1        # Automata için PC1
+
+# ---------------------------------------------------------------------------
+# Sabit Parametreler — Karşılaştırma Deneyleri (Tablo 1, 2, 3, 5)
+# ---------------------------------------------------------------------------
+fixed:
+  window_size: 4
+  alphabet_size: 3
+
+# ---------------------------------------------------------------------------
+# Parametre Varyasyonu — Sweep Deneyleri (Tablo 4)
+# ---------------------------------------------------------------------------
+sweep:
+  window_sizes:   [3, 4, 5, 6]
+  alphabet_sizes: [3, 4, 5, 6]
+
+# ---------------------------------------------------------------------------
+# Random Seedler — 5 Farklı Değer (Tablo 1)
+# ---------------------------------------------------------------------------
+seeds: [42, 123, 2026, 7, 999]
+
+# ---------------------------------------------------------------------------
+# Eğitim Hiperparametreleri — Tüm DL Modeller İçin Sabit
+# ---------------------------------------------------------------------------
+training:
+  epochs:        50       # üst sınır
+  batch_size:    32       # zorunlu
+  learning_rate: 0.001
+  optimizer:     adam
+  loss:          bce      # binary cross-entropy
+  early_stopping:
+    monitor:  val_loss
+    patience: 5           # zorunlu
+
+# ---------------------------------------------------------------------------
+# Gürültü Ayarları — Robustness Deneyi (Tablo 2)
+# ---------------------------------------------------------------------------
+noise:
+  type: gaussian
+  std:  0.1
+
+# ---------------------------------------------------------------------------
+# Automata Modeli
+# ---------------------------------------------------------------------------
+automata:
+  anomaly_threshold: 0.05   # path probability < threshold → ANOMALY
+
+# ---------------------------------------------------------------------------
+# K-Fold Cross Validation
+# ---------------------------------------------------------------------------
+kfold:
+  n_splits: 5
+
+# ---------------------------------------------------------------------------
+# Çıktı Ayarları
+# ---------------------------------------------------------------------------
+output:
+  results_dir:   results/
+  figures_dir:   results/figures/
+  log_dir:       results/logs/
+  save_json:     true      # explainer JSON çıktısı aktif
