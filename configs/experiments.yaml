@@ -18,7 +18,7 @@ datasets:
     group_col: source_file       # aynı dosya hem train hem test'te olamaz
 
   batadal:
-    path: data/raw/batadal/training_dataset_2.csv
+    path: data/raw/batadal/BATADAL_dataset04.csv
     target_col:  ATT_FLAG        # dosyada kontrol et, raporda belirt!
     exclude_cols: [DATETIME]     # zaman sütunu model girdisi değil
     split_strategy: temporal     # kronolojik bölme (shuffle=False)
