@@ -64,10 +64,28 @@ noise:
   std:  0.1
 
 # ---------------------------------------------------------------------------
+# Derin Öğrenme Model Mimarileri
+# ---------------------------------------------------------------------------
+models:
+  lstm:
+    hidden_size: 64
+    num_layers: 2
+    dropout: 0.2
+  gru:
+    hidden_size: 64
+    num_layers: 2
+    dropout: 0.2
+  cnn1d:
+    num_filters: [32, 64, 128]
+    kernel_size: 3
+    dropout: 0.2
+
+# ---------------------------------------------------------------------------
 # Automata Modeli
 # ---------------------------------------------------------------------------
 automata:
   anomaly_threshold: 0.05   # path probability < threshold → ANOMALY
+  smoothing_alpha: 1.0       # Laplace smoothing; 0 = smoothing yok
 
 # ---------------------------------------------------------------------------
 # K-Fold Cross Validation (SKAB için GroupKFold)
