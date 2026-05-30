@@ -30,15 +30,14 @@ class CNN1DModel(nn.Module):
         )
         self.dropout = nn.Dropout(dropout)
         self.fc      = nn.Linear(filters[2], 1)
-        self.sigmoid = nn.Sigmoid()
 
     def forward(self, x):
-        # x: (batch, seq_len, n_features) → conv bekliyor: (batch, n_features, seq_len)
+        # x: (batch, seq_len, n_features) — conv icin transpose
         x = x.transpose(1, 2)
         x = self.conv_blocks(x)
-        x = x.mean(dim=2)        # Global Average Pooling: (batch, filters[2])
+        x = x.mean(dim=2)        # Global Average Pooling
         x = self.dropout(x)
-        return self.sigmoid(self.fc(x))
+        return self.fc(x)        # raw logit — BCEWithLogitsLoss sigmoid'i iceriyor
 
 
 def build_cnn1d(n_features: int, config: dict) -> CNN1DModel:

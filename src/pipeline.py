@@ -360,7 +360,7 @@ def main():
     out = os.path.join(config["output"]["results_dir"], "results.json")
     with open(out, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, ensure_ascii=False)
-    print(f"\nTüm sonuçlar kaydedildi → {out}")
+    print(f"\nTum sonuclar kaydedildi -> {out}")
 
 
 if __name__ == "__main__":

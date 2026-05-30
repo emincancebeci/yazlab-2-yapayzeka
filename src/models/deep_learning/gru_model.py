@@ -23,12 +23,11 @@ class GRUModel(nn.Module):
             dropout     = dropout if num_layers > 1 else 0.0,
         )
         self.fc      = nn.Linear(hidden_size, 1)
-        self.sigmoid = nn.Sigmoid()
 
     def forward(self, x):
         # x: (batch, seq_len, n_features)
         out, _ = self.gru(x)
-        return self.sigmoid(self.fc(out[:, -1, :]))
+        return self.fc(out[:, -1, :])   # raw logit — BCEWithLogitsLoss sigmoid'i iceriyor
 
 
 def build_gru(n_features: int, config: dict) -> GRUModel:

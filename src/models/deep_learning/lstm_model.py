@@ -23,12 +23,11 @@ class LSTMModel(nn.Module):
             dropout     = dropout if num_layers > 1 else 0.0,
         )
         self.fc      = nn.Linear(hidden_size, 1)
-        self.sigmoid = nn.Sigmoid()
 
     def forward(self, x):
         # x: (batch, seq_len, n_features)
         out, _ = self.lstm(x)
-        return self.sigmoid(self.fc(out[:, -1, :]))   # son adımın hidden state'i
+        return self.fc(out[:, -1, :])   # raw logit — BCEWithLogitsLoss sigmoid'i iceriyor
 
 
 def build_lstm(n_features: int, config: dict) -> LSTMModel:
