@@ -1,9 +1,5 @@
 """
-loader.py — Veri Yükleme ve Bölme
 
-İki farklı strateji:
-  - SKAB  : GroupKFold (source_file grup değişkeni)
-  - BATADAL: Temporal (kronolojik %60/%20/%20)
 
 Tüm parametreler configs/experiments.yaml'dan okunur.
 """
@@ -17,15 +13,11 @@ import torch
 from torch.utils.data import Dataset, DataLoader
 
 
-# ===========================================================================
-# SKAB Yükleyici
-# ===========================================================================
 
 def load_skab(config: dict) -> pd.DataFrame:
-    """
-    valve1/ ve valve2/ altındaki tüm CSV'leri birleştirir.
-    source_group ve source_file sütunlarını ekler.
-    """
+    
+    
+    
     skab_cfg = config["datasets"]["skab"]
     dfs = []
 
@@ -38,7 +30,7 @@ def load_skab(config: dict) -> pd.DataFrame:
 
         for fpath in csv_files:
             fname = os.path.basename(fpath)
-            # SKAB dosyaları noktalı virgülle ayrılmış
+            
             try:
                 df = pd.read_csv(fpath, sep=";")
             except Exception:
@@ -53,14 +45,11 @@ def load_skab(config: dict) -> pd.DataFrame:
 
 
 def get_skab_features_labels(df: pd.DataFrame, config: dict):
-    """
-    SKAB için özellik ve etiket matrislerini hazırlar.
-    Exclude sütunları çıkarır, anomaly hedef olarak alır.
-    """
+   
     skab_cfg = config["datasets"]["skab"]
     target_col = skab_cfg["target_col"]           # "anomaly"
     exclude_cols = skab_cfg["exclude_cols"]        # [datetime, changepoint, source_group, source_file]
-    group_col = skab_cfg["group_col"]             # "source_file" — GroupKFold için
+    group_col = skab_cfg["group_col"]             # "source_file" — GroupKFold 
 
     groups = df[group_col].values
     y = df[target_col].values.astype(int)
@@ -72,12 +61,7 @@ def get_skab_features_labels(df: pd.DataFrame, config: dict):
 
 
 def get_skab_kfold_splits(X, y, groups, config: dict):
-    """
-    GroupKFold ile bölme yapar.
-    Aynı .csv dosyasına ait kayıtlar hem train hem test'te olamaz.
-
-    Yields: (X_train, X_val, y_train, y_val)
-    """
+   
     n_splits = config["kfold"]["n_splits"]
     kfold = GroupKFold(n_splits=n_splits)
 
@@ -90,15 +74,9 @@ def get_skab_kfold_splits(X, y, groups, config: dict):
         )
 
 
-# ===========================================================================
-# BATADAL Yükleyici
-# ===========================================================================
 
 def load_batadal(config: dict) -> pd.DataFrame:
-    """
-    Training Dataset 2'yi yükler.
-    Sütun isimlerindeki baştaki/sondaki boşlukları temizler.
-    """
+   
     batadal_cfg = config["datasets"]["batadal"]
     fpath = batadal_cfg["path"]
 
@@ -106,22 +84,18 @@ def load_batadal(config: dict) -> pd.DataFrame:
         raise FileNotFoundError(f"BATADAL dosyası bulunamadı: {fpath}")
 
     df = pd.read_csv(fpath)
-    # Sütun isimlerindeki boşlukları temizle (BATADAL'da mevcut)
+
     df.columns = [c.strip() for c in df.columns]
     return df
 
 
 def get_batadal_features_labels(df: pd.DataFrame, config: dict):
-    """
-    BATADAL için özellik ve etiket matrislerini hazırlar.
-    ATT_FLAG: -999 → 0 (normal), diğerleri → 1 (attack)
-    Zaman sütunu model girdisine dahil edilmez.
-    """
+  
     batadal_cfg = config["datasets"]["batadal"]
-    target_col = batadal_cfg["target_col"]        # "ATT_FLAG"
-    exclude_cols = batadal_cfg["exclude_cols"]     # ["DATETIME"]
+    target_col = batadal_cfg["target_col"]        
+    exclude_cols = batadal_cfg["exclude_cols"]     
 
-    # -999 = normal, diğer değerler = attack
+  
     y = (df[target_col].values != -999).astype(int)
 
     drop_cols = exclude_cols + [target_col]
