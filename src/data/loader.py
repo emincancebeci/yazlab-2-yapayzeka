@@ -134,12 +134,7 @@ class TimeSeriesDataset(Dataset):
     """
 
     def __init__(self, X: np.ndarray, y: np.ndarray, window_size: int):
-        """
-        Args:
-            X: (n_samples, n_features) özellik matrisi
-            y: (n_samples,) etiket dizisi
-            window_size: kayan pencere boyutu (config'den gelir)
-        """
+        
         self.window_size = window_size
         self.X = torch.tensor(X, dtype=torch.float32)
         self.y = torch.tensor(y, dtype=torch.float32)
@@ -148,17 +143,14 @@ class TimeSeriesDataset(Dataset):
         return len(self.X) - self.window_size + 1
 
     def __getitem__(self, idx):
-        x_window = self.X[idx: idx + self.window_size]   # (window_size, n_features)
-        label    = self.y[idx + self.window_size - 1]    # son adımın etiketi
+        x_window = self.X[idx: idx + self.window_size]   
+        label    = self.y[idx + self.window_size - 1]    
         return x_window, label
 
 
 def make_dataloader(X: np.ndarray, y: np.ndarray, config: dict,
                     shuffle: bool = False) -> DataLoader:
-    """
-    Config'den batch_size ve window_size'ı okuyarak DataLoader döner.
-    Train için shuffle=True, Val/Test için shuffle=False.
-    """
+   
     window_size = config["fixed"]["window_size"]
     batch_size  = config["training"]["batch_size"]
 
