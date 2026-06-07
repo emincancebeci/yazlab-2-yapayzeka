@@ -1,0 +1,166 @@
+{
+  "wilcoxon": {
+    "SKAB": [
+      {
+        "model_a": "LSTM",
+        "model_b": "GRU",
+        "statistic": 0.0,
+        "p_value": 0.0625,
+        "significant": false,
+        "note": "p>=0.05: H0 reddedilemedi"
+      },
+      {
+        "model_a": "LSTM",
+        "model_b": "1D-CNN",
+        "statistic": 6.0,
+        "p_value": 0.8125,
+        "significant": false,
+        "note": "p>=0.05: H0 reddedilemedi"
+      },
+      {
+        "model_a": "LSTM",
+        "model_b": "Automata",
+        "statistic": 0.0,
+        "p_value": 0.0625,
+        "significant": false,
+        "note": "p>=0.05: H0 reddedilemedi"
+      },
+      {
+        "model_a": "GRU",
+        "model_b": "1D-CNN",
+        "statistic": 0.0,
+        "p_value": 0.0625,
+        "significant": false,
+        "note": "p>=0.05: H0 reddedilemedi"
+      },
+      {
+        "model_a": "GRU",
+        "model_b": "Automata",
+        "statistic": 0.0,
+        "p_value": 0.0625,
+        "significant": false,
+        "note": "p>=0.05: H0 reddedilemedi"
+      },
+      {
+        "model_a": "1D-CNN",
+        "model_b": "Automata",
+        "statistic": 0.0,
+        "p_value": 0.0625,
+        "significant": false,
+        "note": "p>=0.05: H0 reddedilemedi"
+      }
+    ],
+    "BATADAL": [
+      {
+        "model_a": "LSTM",
+        "model_b": "GRU",
+        "statistic": 7.0,
+        "p_value": 1.0,
+        "significant": false,
+        "note": "p>=0.05: H0 reddedilemedi"
+      },
+      {
+        "model_a": "LSTM",
+        "model_b": "1D-CNN",
+        "statistic": 4.0,
+        "p_value": 0.4375,
+        "significant": false,
+        "note": "p>=0.05: H0 reddedilemedi"
+      },
+      {
+        "model_a": "LSTM",
+        "model_b": "Automata",
+        "statistic": 0.0,
+        "p_value": 0.0625,
+        "significant": false,
+        "note": "p>=0.05: H0 reddedilemedi"
+      },
+      {
+        "model_a": "GRU",
+        "model_b": "1D-CNN",
+        "statistic": 6.0,
+        "p_value": 0.8125,
+        "significant": false,
+        "note": "p>=0.05: H0 reddedilemedi"
+      },
+      {
+        "model_a": "GRU",
+        "model_b": "Automata",
+        "statistic": 0.0,
+        "p_value": 0.0625,
+        "significant": false,
+        "note": "p>=0.05: H0 reddedilemedi"
+      },
+      {
+        "model_a": "1D-CNN",
+        "model_b": "Automata",
+        "statistic": 0.0,
+        "p_value": 0.0625,
+        "significant": false,
+        "note": "p>=0.05: H0 reddedilemedi"
+      }
+    ]
+  },
+  "mcnemar": [
+    {
+      "model_a": "LSTM",
+      "model_b": "GRU",
+      "n01": 71,
+      "n10": 44,
+      "statistic": 5.8783,
+      "p_value": 0.015329,
+      "significant": true,
+      "note": "p<0.05: H0 reddedildi"
+    },
+    {
+      "model_a": "LSTM",
+      "model_b": "1D-CNN",
+      "n01": 72,
+      "n10": 53,
+      "statistic": 2.592,
+      "p_value": 0.107405,
+      "significant": false,
+      "note": "p>=0.05: H0 reddedilemedi"
+    },
+    {
+      "model_a": "LSTM",
+      "model_b": "Automata",
+      "n01": 75,
+      "n10": 64,
+      "statistic": 0.7194,
+      "p_value": 0.396333,
+      "significant": false,
+      "note": "p>=0.05: H0 reddedilemedi"
+    },
+    {
+      "model_a": "GRU",
+      "model_b": "1D-CNN",
+      "n01": 53,
+      "n10": 61,
+      "statistic": 0.4298,
+      "p_value": 0.512075,
+      "significant": false,
+      "note": "p>=0.05: H0 reddedilemedi"
+    },
+    {
+      "model_a": "GRU",
+      "model_b": "Automata",
+      "n01": 55,
+      "n10": 71,
+      "statistic": 1.7857,
+      "p_value": 0.181449,
+      "significant": false,
+      "note": "p>=0.05: H0 reddedilemedi"
+    },
+    {
+      "model_a": "1D-CNN",
+      "model_b": "Automata",
+      "n01": 61,
+      "n10": 69,
+      "statistic": 0.3769,
+      "p_value": 0.539255,
+      "significant": false,
+      "note": "p>=0.05: H0 reddedilemedi"
+    }
+  ]
+}

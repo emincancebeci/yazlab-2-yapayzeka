@@ -22,8 +22,10 @@ data/processed/
 *.pth
 *.ckpt
 
-# Sonuçlar (isteğe bağlı — commit etmek istersen kaldır)
-results/
+# Sonuçlar — sadece büyük ham dosyalar hariç, görseller ve tablolar dahil
+results/logs/
+results/*.json
+
 
 # Jupyter
 .ipynb_checkpoints/
