@@ -14,6 +14,7 @@
 7. [Açıklanabilirlik Modülü](#7-açıklanabilirlik-modülü)
 8. [İstatistiksel Analiz](#8-istatistiksel-analiz)
 9. [Sonuç ve Değerlendirme](#9-sonuç-ve-değerlendirme)
+10. [Kaynaklar](#10-kaynaklar)
 
 ---
 
@@ -406,3 +407,41 @@ Bu çalışmada LSTM, GRU, 1D-CNN ve Probabilistic Automata modelleri iki farkl�
 ---
 
 *Tüm deney kodu, konfigürasyonlar ve sonuçlar bu repoda mevcuttur. Deneyleri yeniden çalıştırmak için `python src/pipeline.py --config configs/experiments.yaml` komutu yeterlidir.*
+
+---
+
+## 10. Kaynaklar
+
+**Veri Setleri**
+
+[1] Filonov, P., Shabalin, A., & Lavrentyev, A. (2020). **SKAB — Skoltech Anomaly Benchmark.** Kaggle. https://www.kaggle.com/dsv/1693952
+
+[2] Taormina, R., Galelli, S., Tippenhauer, N. O., Salomons, E., & Ostfeld, A. (2018). **Battle of the Attack Detection Algorithms: Disclosing Cyber Attacks on Water Distribution Networks.** *Journal of Water Resources Planning and Management*, 144(8). https://doi.org/10.1061/(ASCE)WR.1943-5452.0000969
+
+---
+
+**Sembolik Zaman Serisi Temsili ve Otomata**
+
+[3] Lin, J., Keogh, E., Wei, L., & Lonardi, S. (2007). **Experiencing SAX: A Novel Symbolic Representation of Time Series.** *Data Mining and Knowledge Discovery*, 15(2), 107–144. https://doi.org/10.1007/s10618-007-0064-z
+
+[4] Keogh, E., Chakrabarti, K., Pazzani, M., & Mehrotra, S. (2001). **Dimensionality Reduction for Fast Similarity Search in Large Time Series Databases.** *Knowledge and Information Systems*, 3(3), 263–286. https://doi.org/10.1007/PL00011669
+
+[5] Casas, P., & Vaton, S. (2012). **Probabilistic Automata-based Approach for Anomaly Detection in Traffic Data.** *IEEE International Workshop on Network Science for Communication Networks (NetSciCom)*. https://doi.org/10.1109/INFCOMW.2012.6193544
+
+---
+
+**Derin Öğrenme Tabanlı Anomali Tespiti**
+
+[6] Hochreiter, S., & Schmidhuber, J. (1997). **Long Short-Term Memory.** *Neural Computation*, 9(8), 1735–1780. https://doi.org/10.1162/neco.1997.9.8.1735
+
+[7] Cho, K., van Merrienboer, B., Gulcehre, C., Bahdanau, D., Bougares, F., Schwenk, H., & Bengio, Y. (2014). **Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation.** *EMNLP 2014*. https://arxiv.org/abs/1406.1078
+
+[8] Bai, S., Kolter, J. Z., & Koltun, V. (2018). **An Empirical Evaluation of Generic Convolutional and Recurrent Networks for Sequence Modeling.** *arXiv*. https://arxiv.org/abs/1803.01271
+
+---
+
+**İstatistiksel Testler**
+
+[9] Wilcoxon, F. (1945). **Individual Comparisons by Ranking Methods.** *Biometrics Bulletin*, 1(6), 80–83. https://doi.org/10.2307/3001968
+
+[10] McNemar, Q. (1947). **Note on the Sampling Error of the Difference Between Correlated Proportions or Percentages.** *Psychometrika*, 12(2), 153–157. https://doi.org/10.1007/BF02295996
