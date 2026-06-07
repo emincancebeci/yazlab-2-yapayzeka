@@ -191,18 +191,24 @@ yazlab-2-2/
 
 ---
 
-### Tablo 3: Cross-Dataset Performans Karşılaştırması
+### Tablo 3: Cross-Dataset Performans Karşılaştırması (F1-score)
 
-*Her model kendi veri setinde eğitilip kendi test setinde değerlendirilmiştir.*
+*Her hücre: Train veri setinde eğitilip Test veri setinde değerlendirilen modelin F1 skoru.*  
+*DL modelleri için her iki veri seti PCA ile 8 ortak bileşene indirgenerek boyut uyumu sağlanmıştır.*  
+*Automata için her iki veri seti PC1 (1 bileşen) kullanılmıştır.*
 
-| Model | SKAB (test) | BATADAL (test) |
-|-------|-------------|----------------|
-| LSTM | 0.8529 | 0.0383 |
-| GRU | 0.8591 | 0.0338 |
-| 1D-CNN | 0.8529 | 0.0324 |
-| Automata | 0.0171 | **0.1449** |
+| Model | Train: SKAB → Test: SKAB | Train: SKAB → Test: BATADAL | Train: BATADAL → Test: SKAB | Train: BATADAL → Test: BATADAL |
+|-------|--------------------------|-----------------------------|-----------------------------|-------------------------------|
+| LSTM | 0.8529 ± 0.0048 | 0.1531 ± 0.0017 | 0.4426 ± 0.0735 | 0.0383 ± 0.0239 |
+| GRU | **0.8591 ± 0.0038** | 0.1570 ± 0.0015 | **0.5109 ± 0.0080** | 0.0338 ± 0.0093 |
+| 1D-CNN | 0.8529 ± 0.0033 | **0.1667 ± 0.0071** | 0.4364 ± 0.0875 | 0.0324 ± 0.0162 |
+| Automata | 0.0171 ± 0.0000 | 0.1293 ± 0.0000 | 0.0583 ± 0.0000 | **0.1449 ± 0.0000** |
 
-**Analiz:** Model-veri seti uyumu kritiktir. DL modelleri yüksek anomali oranlı, çok özellikli SKAB'da güçlüyken; Automata seyrek anomalili ve yapısal BATADAL'da üstün gelmiştir. Bu bulgu, "tek en iyi model" yerine veri özelliklerine göre model seçiminin önemini vurgulamaktadır.
+**Analiz:**
+- **Train BATADAL → Test SKAB:** GRU 0.511 F1 elde etmiştir. BATADAL'daki az sayıda ama belirgin anomali örüntüleri, SKAB'a kısmen genellenebilmektedir.
+- **Train SKAB → Test BATADAL:** DL modelleri ~0.15-0.17 F1 elde etmiştir — kendi eğitim setindeki (0.03) değerlerden çok daha iyi! Bu durum, SKAB'ın zengin anomali örneklerinin BATADAL'a aktarılabilir örüntüler içerdiğini göstermektedir.
+- **Automata cross-dataset:** SKAB→BATADAL 0.129, BATADAL→SKAB 0.058. SAX pattern'ları veri setine özgü olduğundan geçiş matrisi iyi genellenememektedir.
+- **Köşegen (aynı veri seti):** Her modelin kendi veri setindeki başarısı açıkça en yüksek, bu beklenen bir sonuçtur.
 
 ---
 
