@@ -1,6 +1,10 @@
 # From Black-Box to Explainability: Probabilistic Automata for Time Series Analysis
 
-**Grup 15** | SKAB + BATADAL Veri Setleri | Yazılım Geliştirme — 2. Proje
+**Grup 15** | SKAB + BATADAL Veri Setleri | Yazılım Geliştirme — 2. Proje 
+
+Emincan Cebeci 231307057 https://github.com/emincancebeci 
+
+Emirhan Filiz 231307063 https://github.com/Emirhanfiliz
 
 ---
 
